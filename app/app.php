@@ -28,8 +28,13 @@
 
     $app->post("/", function() use ($app) {
         $new_stylist = new Stylist($_POST['new_stylist']);
-        $new_stylist->save(); 
+        $new_stylist->save();
         return $app['twig']->render('index.html.twig', array('stylists' => Stylist::getAll()));
+    });
+
+    $app->get("/stylist/{id}", function($id) use ($app) {
+        $stylist = Stylist::findStylist($id);
+        return $app['twig']->render('stylist.html.twig', array('stylist' => $stylist));
     });
 
     return $app;

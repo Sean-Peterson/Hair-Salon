@@ -1,0 +1,29 @@
+{% extends "index.html.twig" %}
+
+    {% block navbar %}
+        <a href="/">Home</a>
+    {% endblock %}
+
+    {% block content %}
+        <h2>{{stylist.getStylistName}}'s clients</h2>
+        {% if clients is not empty %}
+            <ul>
+                {% for client in clients %}
+                    <li><a href="/client/{{client.getId}}">{{ client.getClientName }}</a></li>
+                {% endfor %}
+            </ul>
+        {%endif%}
+    {% endblock %}
+
+    {% block controls %}
+        <h3>Input a new client for {{stylist.getStylistName}}:</h3>
+        <form action="/stylist/{{stylist.getId}}/add" method="post">
+            <input type="text" name="name" placeholder="Name">
+            <input type="hidden" name="stylist_id" value="{{stylist.getId}}">
+            <button type="submit" name="button">Add</button>
+        </form>
+        <h3>Edit stylist name</h3>
+        <form action="/stylist/{{stylist.getId}}/edit" method="get">
+            <button type="submit" name="edit" placeholder="New name for {{stylist.getStylistName}}">change</button>
+        </form>
+    {% endblock %}
