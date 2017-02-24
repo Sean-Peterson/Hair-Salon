@@ -21,6 +21,7 @@ _Hair Salon allows the user to manage Hairriete's hair salon. The user can hire 
 6. To run tests enter `composer test` in terminal.
 7. Create a local server in the /web directory within the project folder using the command: `php -S localhost:8000` (assuming you are using macOS - commands are different on other operating systems).
 8. Open the directory http://localhost:8000/ in any standard web browser.
+9. Make sure MAMP is started and change the MySQL number in the src files to your computer's sql port number. 
 
 ## Specifications
 
