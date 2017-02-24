@@ -78,7 +78,8 @@
         {
             $find_results = $GLOBALS['DB']->query("SELECT * FROM clients where {$property} = '{$search_value}';");
             $found_clients = array();
-            foreach($find_results as $result){
+            foreach($find_results as $result)
+            {
                 $found_client = new Client($result['client_name'],$result['stylist_id'], $result['id']);
                 array_push($found_clients, $found_client);
             }

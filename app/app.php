@@ -3,6 +3,7 @@
 
     require_once __DIR__."/../vendor/autoload.php";
     require_once __DIR__."/../src/Stylist.php";
+    require_once __DIR__."/../src/Client.php";
 
 
     $app = new Silex\Application();
@@ -32,11 +33,38 @@
         return $app['twig']->render('index.html.twig', array('stylists' => Stylist::getAll()));
     });
 
-    // $app->get("/stylist/{id}", function($id) use ($app) {
-    //     $stylist = Stylist::findStylist($id);
-    //     $clients = Client::find
-    //     return $app['twig']->render('stylist.html.twig', array('stylist' => $stylist));
-    // });
+    $app->get("/stylist/{id}", function($id) use ($app) {
+        $stylist = Stylist::findStylist($id);
+        $clients = Client::findClientByProperty("stylist_id", $id);
+        return $app['twig']->render('stylist.html.twig', array('stylist' => $stylist, 'clients'=> $clients));
+    });
+
+    $app->get("/stylist/{id}/edit", function($id) use ($app) {
+        $stylist = Stylist::findStylist($id);
+        $clients = Client::findClientByProperty("stylist_id", $id);
+        return $app['twig']->render('stylist.html.twig', array('stylist' => $stylist, 'clients'=> $clients));
+    });
+
+    $app->post("/stylist/{id}/add", function($id) use ($app) {
+        $new_client = new Client($_POST['name'],$_POST['stylist_id']);
+        $new_client->save();
+        $stylist = Stylist::findStylist($id);
+        $clients = Client::findClientByProperty("stylist_id", $id);
+        return $app['twig']->render('stylist.html.twig', array('stylist' => $stylist, 'clients'=> $clients));
+    });
+
+    $app->patch("/stylist/{id}/patch", function($id) use ($app) {
+        $stylist = Stylist::findStylist($id);
+        $clients = Client::findClientByProperty("stylist_id", $id);
+        $stylist->updateStylist("stylist_name", $_POST['new_name']);
+        return $app['twig']->render('stylist.html.twig', array('stylist' => $stylist, 'clients'=> $clients));
+    });
+
+    $app->delete("/{id}/remove", function($id) use ($app) {
+        $stylist = Stylist::findStylist($id);
+        $stylist->deleteStylist();
+        return $app['twig']->render('index.html.twig', array('stylists' => Stylist::getAll()));
+    });
 
     return $app;
 ?>
