@@ -1,5 +1,5 @@
 <?php
-    class Stylists
+    class Stylist
     {
         private $stylist_name;
         private $id;
@@ -37,14 +37,24 @@
         static function getAll()
         {
             $returned_stylists = $GLOBALS['DB']->query("SELECT * FROM stylists;");
-            var_dump($returned_stylists);
             $stylists = array();
             foreach($returned_stylists as $stylist)
             {
-                $new_stylist = new Stylists($stylist['stylist_name'], $stylist['id']);
+                $new_stylist = new Stylist($stylist['stylist_name'], $stylist['id']);
                 array_push($stylists, $new_stylist);
             }
             return $stylists;
+        }
+
+        static function findStylist($id)
+        {
+            $find_stylist = $GLOBALS['DB']->query("SELECT * FROM stylists WHERE id = {$id};");
+            $found_stylist = null;
+            foreach($find_stylist as $stylist)
+            {
+                $found_stylist = new Stylist($stylist['stylist_name'], $stylist['id']);
+            }
+            return $found_stylist;
         }
 
 
