@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+        <link rel="stylesheet" href="/css/styles.css" type="text/css">
+        <meta charset="utf-8">
+        <title>Restaurants Guide</title>
+    </head>
+    <body>
+        <div class="container">
+
+            <div class="well navigation">
+                <div class="left-header">
+                    <h1>Welcome to Hairriette's Hair Salon</h1>
+                </div>
+                <div class="right-header">
+                    {% block navbar %}
+                    {% endblock %}
+                </div>
+            </div>
+
+            <div class="well content">
+                {% block content %}
+                <h2>Here is a list of our Stylists</h2>
+                    {% if stylists is not empty %}
+                        <ul>
+                            {% for stylist in stylists %}
+                                <li><a href="/stylists/{{stylist.getId}}">{{ stylist.getStylistName }}</a></li>
+                            {% endfor %}
+                        </ul>
+                    {%endif%}
+                {% endblock %}
+            </div>
+
+            <div class="well controls">
+                {% block controls %}
+                    <h3>Input a new stylist!</h3>
+                    <form action="/" method="post">
+                        <input type="text" name="new_stylist" placeholder="new stylist's name">
+                        <button type="submit" name="button">Add</button>
+                    </form>
+                {% endblock %}
+            </div>
+        </div>
+    </body>
+</html>
