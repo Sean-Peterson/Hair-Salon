@@ -66,9 +66,7 @@ class ClientTest extends PHPUnit_Framework_TestCase
            $test_client_two->save();
            // Act
            $result = Client::getAll();
-           var_dump($result);
            $expected_result = array($test_client_one, $test_client_two);
-        //    var_dump($expected_result);
            // Assert
            $this->assertEquals($result, $expected_result);
        }
