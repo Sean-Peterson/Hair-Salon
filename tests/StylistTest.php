@@ -65,7 +65,7 @@ class StylistTest extends PHPUnit_Framework_TestCase
         $this->assertEquals($result, $expected_result);
     }
 
-    function test_find()
+    function test_findStylist()
     {
         // Arrange
         $stylist_name_one = 'Shannon';
@@ -80,6 +80,24 @@ class StylistTest extends PHPUnit_Framework_TestCase
         // Assert
         $this->assertEquals($test_stylist_one, $result);
     }
+
+    function test_updateStylist()
+    {
+        // Arrange
+        $stylist_name = 'Shannon';
+        $test_stylist = new Stylist ($stylist_name);
+        $test_stylist->save();
+        $property = "stylist_name";
+        $update_value = "Marge";
+        $result = $test_stylist->updateStylist($property, $update_value);
+        // Act
+        $result = Stylist::getAll();
+        $expected_result = new Stylist($update_value);
+        // Assert
+        $this->assertEquals($update_value, $result[0]->getStylistName());
+    }
+
+
 
 
 
