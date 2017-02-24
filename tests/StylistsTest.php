@@ -34,6 +34,21 @@ class StylistsTest extends PHPUnit_Framework_TestCase
         $this->assertEquals($result, $expected_result);
     }
 
+    function test_setter()
+    {
+        // Arrange
+        $id = 1;
+        $stylist_name = 'Shannon';
+        $test_stylist = new Stylists ($stylist_name,$id);
+        $test_stylist->setStylistName('Molly');
+        // Act
+        $result = array($test_stylist->getId(), $test_stylist->getStylistName());
+        $expected_result = array(1, 'Molly');
+
+        // Assert
+        $this->assertEquals($result, $expected_result);
+    }
+
 
 }
 

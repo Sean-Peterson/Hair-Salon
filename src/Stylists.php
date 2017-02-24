@@ -9,7 +9,7 @@
             $this->stylist_name = $stylist_name;
             $this->id = $id;
         }
-        function setStylist($new_stylist_name)
+        function setStylistName($new_stylist_name)
         {
           $this->stylist_name = (string) $new_stylist_name;
         }
