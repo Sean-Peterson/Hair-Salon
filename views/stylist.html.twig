@@ -16,7 +16,7 @@
     {% endblock %}
 
     {% block controls %}
-        <h3>Input a new client for {{stylist.getStylistName}}:</h3>
+        <h3>Give a new client to {{stylist.getStylistName}}:</h3>
         <form action="/stylist/{{stylist.getId}}/add" method="post">
             <input type="text" name="name" placeholder="Name">
             <input type="hidden" name="stylist_id" value="{{stylist.getId}}">
