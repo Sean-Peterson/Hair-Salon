@@ -14,10 +14,10 @@ $DB = new PDO($server, $username, $password);
 
 class StylistsTest extends PHPUnit_Framework_TestCase
 {
-    // protected function tearDown()
-    // {
-    //     Stylists::deleteAll();
-    // }
+    protected function tearDown()
+    {
+        Stylists::deleteAll();
+    }
 
     function test_getters()
     {
@@ -48,6 +48,24 @@ class StylistsTest extends PHPUnit_Framework_TestCase
         // Assert
         $this->assertEquals($result, $expected_result);
     }
+    function test_save_getAll()
+    {
+        // Arrange
+        $stylist_name_one = 'Shannon';
+        $test_stylist_one = new Stylists ($stylist_name_one);
+        $test_stylist_one->save();
+        $stylist_name_two = 'Molly';
+        $test_stylist_two = new Stylists ($stylist_name_two);
+        $test_stylist_two->save();
+        // Act
+        $result = Stylists::getAll();
+        $expected_result = array($test_stylist_one, $test_stylist_two);
+
+        // Assert
+        $this->assertEquals($result, $expected_result);
+    }
+
+
 
 
 }
