@@ -74,6 +74,16 @@
             $GLOBALS['DB']->exec("DELETE FROM clients WHERE id = {$this->getId()}");
         }
 
+        static function findClientByProperty($property, $search_value)
+        {
+            $find_results = $GLOBALS['DB']->query("SELECT * FROM clients where {$property} = '{$search_value}';");
+            $found_clients = array();
+            foreach($find_results as $result){
+                $found_client = new Client($result['client_name'],$result['stylist_id'], $result['id']);
+                array_push($found_clients, $found_client);
+            }
+            return $found_clients;
+        }
 
     }
 ?>

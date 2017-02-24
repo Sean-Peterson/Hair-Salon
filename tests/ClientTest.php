@@ -89,6 +89,25 @@ class ClientTest extends PHPUnit_Framework_TestCase
            $this->assertEquals($test_client_one, $result);
        }
 
+       function test_findClientByProperty()
+       {
+           // Arrange
+           $client_name_one = 'Dave';
+           $stylist_id_one = 1;
+           $test_client_one = new Client ($client_name_one, $stylist_id_one);
+           $test_client_one->save();
+           $client_name_two = 'Frank';
+           $stylist_id_two = 2;
+           $test_client_two = new Client ($client_name_two, $stylist_id_two);
+           $test_client_two->save();
+
+           // Act
+           $result = Client::findClientByProperty("stylist_id", 1);
+           $expected_result = array($test_client_one);
+           // Assert
+           $this->assertEquals($expected_result, $result);
+       }
+
        function test_updateClient()
        {
            // Arrange

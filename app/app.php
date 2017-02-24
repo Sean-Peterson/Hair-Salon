@@ -32,10 +32,11 @@
         return $app['twig']->render('index.html.twig', array('stylists' => Stylist::getAll()));
     });
 
-    $app->get("/stylist/{id}", function($id) use ($app) {
-        $stylist = Stylist::findStylist($id);
-        return $app['twig']->render('stylist.html.twig', array('stylist' => $stylist));
-    });
+    // $app->get("/stylist/{id}", function($id) use ($app) {
+    //     $stylist = Stylist::findStylist($id);
+    //     $clients = Client::find
+    //     return $app['twig']->render('stylist.html.twig', array('stylist' => $stylist));
+    // });
 
     return $app;
 ?>
