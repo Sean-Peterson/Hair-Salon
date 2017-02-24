@@ -1,0 +1,56 @@
+/*colorway
+background-color: rgb(42, 79, 110);
+secondary color rgb(170, 142, 57);
+Tertiary color rgb(170, 91, 57);
+well collor rgb(181, 195, 208);*/
+body {
+    color: rgb(42, 79, 110);
+}
+
+li {
+    list-style-type: none;
+    color: rgb(170, 91, 57);
+}
+
+a {
+    color: rgb(170, 91, 57);
+}
+
+.container{
+    background-color: rgb(42, 79, 110);
+    min-height: 100vh;
+    min-width: 100vw;
+
+}
+
+.well {
+    background-color: rgb(255, 246, 220);
+}
+
+.left-header{
+    display: inline-block;
+}
+
+.right-header {
+    display: inline-block;
+    padding-left: 40px;
+    text-align: right;
+}
+
+.right-header a {
+    padding-left: 40px;
+}
+
+.navigation {
+    width: 100%;
+    margin-top: 5px;
+    margin-bottom: 70px;
+    padding-bottom: 0px;
+}
+.content {
+    margin-bottom: 70px;
+
+}
+.control {
+    margin-bottom: 70px;
+}
